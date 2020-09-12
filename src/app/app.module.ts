@@ -6,7 +6,7 @@ import { AppComponent } from "./app.component";
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule, AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
 
