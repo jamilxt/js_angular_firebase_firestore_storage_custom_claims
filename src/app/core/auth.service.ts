@@ -6,7 +6,13 @@ import { AngularFireAuth } from "@angular/fire/auth";
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private router: Router, private afAuth: AngularFireAuth) {}
+  private user: firebase.User;
+
+  constructor(private router: Router, private afAuth: AngularFireAuth) {
+    afAuth.authState.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   logout() {
     this.afAuth.signOut();
@@ -14,15 +20,14 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    // not working - refer to: 02_04
-    // this.afAuth.authState.subscribe((user) => {
-    //   if (user) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
+    var isLogged = false;
+    // (fixed) not working - refer to: 02_04
+    if (this.user) {
+      isLogged = true;
+    } else {
+      isLogged = false;
+    }
 
-    return true;
+    return isLogged;
   }
 }
