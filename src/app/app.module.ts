@@ -10,8 +10,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
 import { ProfileComponent } from "./profile/profile.component";
-import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
-
+import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
   imports: [
@@ -20,6 +20,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent],
