@@ -12,6 +12,8 @@ import { FormsModule } from "@angular/forms";
 import { ProfileComponent } from "./profile/profile.component";
 import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
   imports: [
@@ -21,6 +23,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent],
