@@ -64,7 +64,7 @@ export class AuthService {
 
   updateUserDocument(userProfile: UserProfile) {
     return this.angularFirestore
-      .doc(`users/${this.currentUser.uid}`)
+      .doc(`users/${userProfile.uid}`)
       .update(userProfile);
   }
 

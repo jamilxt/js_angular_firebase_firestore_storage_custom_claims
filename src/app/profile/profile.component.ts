@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   error: string;
 
   downloadURL: Observable<string>;
-//  downloadUrl = "asseets/profile-placeholder.png";
+  //  downloadUrl = "asseets/profile-placeholder.png";
   uploadProgress: Observable<number>;
 
   constructor(
@@ -44,12 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    const currentUser = this.authService.getCurrentUser();
-    this.uid = currentUser.uid;
-    this.itemDoc = this.angularFirestore.doc<UserProfile>(
-      `users/${currentUser.uid}`
-    );
-
+    this.itemDoc = this.angularFirestore.doc<UserProfile>(`users/${this.uid}`);
     this.item = this.itemDoc.valueChanges();
   }
 

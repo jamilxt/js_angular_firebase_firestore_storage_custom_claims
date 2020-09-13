@@ -10,7 +10,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of users | async">
-      <td>{{ user.name }}</td>
+      <td>
+        <a [routerLink]="['/profile', user.uid]">
+          {{ user.name }}
+        </a>
+      </td>
       <td>{{ user.specialty }}</td>
       <td>
         {{ user.address }} {{ user.city }} {{ user.state }} {{ user.zip }}
