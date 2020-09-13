@@ -25,6 +25,10 @@ export class AuthService {
     this.router.navigate([""]);
   }
 
+  getCurrentUser() {
+    return this.user;
+  }
+
   isLoggedIn() {
     var isLogged = false;
     // (fixed) not working - refer to: 02_04
@@ -56,6 +60,6 @@ export class AuthService {
     };
 
     // write to Cloud Firestore
-    return this.afService.doc(`user/${currentUser.uid}`).set(userProfile);
+    return this.afService.doc(`users/${currentUser.uid}`).set(userProfile);
   }
 }
