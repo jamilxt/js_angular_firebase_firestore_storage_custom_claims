@@ -20,8 +20,8 @@ export class AuthService {
     });
   }
 
-  logout() {
-    this.afAuth.signOut();
+  async logout() {
+    await this.afAuth.signOut();
     this.router.navigate([""]);
   }
 
@@ -66,5 +66,16 @@ export class AuthService {
     return this.angularFirestore
       .doc(`users/${this.currentUser.uid}`)
       .update(userProfile);
+  }
+
+  async routeOnLogin() {
+    const user = this.afAuth.currentUser;
+    const token = await (await user).getIdTokenResult();
+
+    if (token.claims.admin) {
+      this.router.navigate(["/users"]);
+    } else {
+      this.router.navigate([`/profile/${(await user).uid}`]);
+    }
   }
 }

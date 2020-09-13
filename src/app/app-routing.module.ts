@@ -25,13 +25,33 @@ const adminOnly = () =>
     map((claims) => claims.admin === true || [""])
   );
 
+const redirectLoggedInToProfileOrUsers = () =>
+  pipe(
+    customClaims,
+    map((claims) => {
+      // if no claims, then there is no authenticed user
+      // so allow the route ['']
+      if (claims.length === 0) {
+        return true;
+      }
+
+      // if a custom cliam is set, then redirect to ['users']
+      if (claims.admin) {
+        return ["users"];
+      }
+
+      // otherwise, redirect user's profile page
+      return ["profile", claims.user_id];
+    })
+  );
+
 const routes: Routes = [
   {
     path: "",
     component: LoginComponent,
     // (bug) using these below two lines - after clicking on logout - it's not redirecting to the homepage
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToProfile },
+    data: { authGuardPipe: redirectLoggedInToProfileOrUsers },
   },
   {
     path: "profile/:id",
