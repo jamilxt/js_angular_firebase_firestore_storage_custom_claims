@@ -8,15 +8,15 @@ import { AngularFirestore } from "@angular/fire/firestore";
   providedIn: "root",
 })
 export class AuthService {
-  private user: firebase.User;
+  private currentUser: firebase.User;
 
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private afService: AngularFirestore
+    private angularFirestore: AngularFirestore
   ) {
     afAuth.authState.subscribe((user) => {
-      this.user = user;
+      this.currentUser = user;
     });
   }
 
@@ -26,13 +26,13 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    return this.user;
+    return this.currentUser;
   }
 
   isLoggedIn() {
     var isLogged = false;
     // (fixed) not working - refer to: 02_04
-    if (this.user) {
+    if (this.currentUser) {
       isLogged = true;
     } else {
       isLogged = false;
@@ -42,14 +42,11 @@ export class AuthService {
   }
 
   createUserDocument() {
-    // get the current user
-    const currentUser = this.user;
-
     // create the object with new data
     const userProfile: UserProfile = {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      name: currentUser.displayName,
+      uid: this.currentUser.uid,
+      email: this.currentUser.email,
+      name: this.currentUser.displayName,
       address: "",
       city: "",
       state: "",
@@ -60,6 +57,14 @@ export class AuthService {
     };
 
     // write to Cloud Firestore
-    return this.afService.doc(`users/${currentUser.uid}`).set(userProfile);
+    return this.angularFirestore
+      .doc(`users/${this.currentUser.uid}`)
+      .set(userProfile);
+  }
+
+  updateUserDocument(userProfile: UserProfile) {
+    return this.angularFirestore
+      .doc(`users/${this.currentUser.uid}`)
+      .update(userProfile);
   }
 }
