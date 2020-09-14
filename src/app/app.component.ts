@@ -10,7 +10,7 @@ declare var particlesJS: any;
 export class AppComponent implements OnInit {
   title = "grid-dashboard";
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
     particlesJS.load("particles", "assets/particles.json", () => {
