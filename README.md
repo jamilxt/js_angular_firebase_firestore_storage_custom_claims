@@ -1,4 +1,4 @@
-# GridDashboard [Live Demo](https://fir-practice-18187.web.app/)
+# GridDashboard ([Live Demo](https://fir-practice-18187.web.app/))
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
 
