@@ -9,7 +9,7 @@
         <img class="ui image" [src]="srcUrl" alt="Profile Image" />
       </div>
 
-      <div *ngIf="!downloadURL">
+      <div *ngIf="!(downloadURL | async)">
         <img
           src="assets/profile-placeholder.png"
           alt="Profile Image"
