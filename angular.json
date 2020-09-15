@@ -36,7 +36,18 @@
               "node_modules/semantic-ui-container/container.min.css",
               "node_modules/semantic-ui-message/message.min.css"
             ],
-            "scripts": ["src/assets/particles.js"]
+            "scripts": ["src/assets/particles.js"],
+            "allowedCommonJsDependencies": [
+              "firebase",
+              "@firebase/app",
+              "@firebase/auth",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config",
+              "@firebase/component"
+           ]
           },
           "configurations": {
             "production": {

@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
+import { AngularFireAnalyticsModule } from "@angular/fire/analytics";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
@@ -22,6 +23,7 @@ import { UsersComponent } from './users/users.component';
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
